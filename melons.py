@@ -51,9 +51,11 @@ class InternationalMelonOrder(AbstracMelonOrder):
         return self.country_code
 
 
+
 order2 = InternationalMelonOrder ("melon", 5, 0.17, "UK")
 print(order2.species, order2.qty, order2.order_type)
 print(order2.get_total(), order2.get_country_code())
+
 
 
 # # print (order2.get_total())
