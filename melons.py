@@ -14,15 +14,26 @@ class AbstracMelonOrder():
 
     def get_total(self, base_price = 5.0):
         """Calculate price, including tax."""
-
+        
         total = (1 + self.tax) * self.qty * base_price
+
+
+        if self.species == "Chrismas Melons":
+        	total = base_price * 1.5
+        	
+
+        if self.order_type	== "international"and self.qty < 10:
+        	total = total + 3
+
         return total
+
 
 
     def mark_shipped(self):
         """Record the fact than an order has been shipped."""
 
         self.shipped = True
+
 
 
 class DomesticMelonOrder(AbstracMelonOrder):
@@ -32,10 +43,6 @@ class DomesticMelonOrder(AbstracMelonOrder):
 
     def __init__(self, species, qty, tax):
         super().__init__(species, qty, tax, 'domestic', 'us')
-
-
-order1 = DomesticMelonOrder ("melon", 5, 0.12)
-print(order1.species, order1.qty, order1.order_type)
 
 
 class InternationalMelonOrder(AbstracMelonOrder):
@@ -52,13 +59,22 @@ class InternationalMelonOrder(AbstracMelonOrder):
 
 
 
-order2 = InternationalMelonOrder ("melon", 5, 0.17, "UK")
-print(order2.species, order2.qty, order2.order_type)
-print(order2.get_total(), order2.get_country_code())
+
+order1 = DomesticMelonOrder ("Chrismas Melons", 5, 0.12)
+print(order1.species, order1.qty, order1.order_type, order1.get_total())
+
+print()
+
+order2 = InternationalMelonOrder ("Chrismas Melons", 5, 0.17, "UK")
+print(order2.species, order2.qty, order2.order_type, 
+	  order2.get_total(), order2.get_country_code())
 
 
 
-# # print (order2.get_total())
+
+
+
+
 
 
 
